@@ -1,57 +1,50 @@
-<div class="page-body">
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="card card-border-inverse">
-                <div class="card-block" id="div_pass">
-                    <table class="table table-bordered">
-                        <tbody>
-                            <tr>
-                                <td>Password</td>
-                                <td>
-                                    <div class="form-group">
-                                        <div class="input-group">
-                                            <input type="text" name="pass" id="pass" class="form-control" readonly>
-                                            <span class="input-group-btn">
-                                                <button id="copyButton" class="btn btn-default" onclick="copyPassword()">Copy</button>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Option</td>
-                                <td>
-                                    <label for="slider">Length:</label>
-                                    <input id="slider" class="form-control" type="number" min="10" max="50" value="10">
-                                    <br>
-                                    <div class="setting">
-                                        <input type="checkbox" id="uppercase" checked>
-                                        <label for="uppercase">Include Uppercase</label>
-                                    </div>
-                                    <div class="setting">
-                                        <input type="checkbox" id="lowercase" checked>
-                                        <label for="lowercase">Include Lowercase</label>
-                                    </div>
-                                    <div class="setting">
-                                        <input type="checkbox" id="number" checked>
-                                        <label for="number">Include Numbers</label>
-                                    </div>
-                                    <div class="setting">
-                                        <input type="checkbox" id="symbol">
-                                        <label for="symbol">Include Symbols</label>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+<div class="card-block" id="div_pass">
+  <table class="table table-bordered">
+    <tbody>
+      <tr>
+        <td>Password</td>
+        <td>
+          <div class="form-group">
+            <div class="input-group">
+              <input type="text" name="pass" id="pass" class="form-control" readonly>
+              <span class="input-group-btn">
+                <button id="copyButton" class="btn btn-default" onclick="copyPassword()">Copy</button>
+              </span>
             </div>
-        </div>
-    </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>Option</td>
+        <td>
+          <label for="slider">Length:</label>
+          <input id="slider" class="form-control" type="number" min="10" max="50" value="10">
+          <br>
+          <div class="setting">
+            <input type="checkbox" id="uppercase" checked>
+            <label for="uppercase">Include Uppercase</label>
+          </div>
+          <div class="setting">
+            <input type="checkbox" id="lowercase" checked>
+            <label for="lowercase">Include Lowercase</label>
+          </div>
+          <div class="setting">
+            <input type="checkbox" id="number" checked>
+            <label for="number">Include Numbers</label>
+          </div>
+          <div class="setting">
+            <input type="checkbox" id="symbol">
+            <label for="symbol">Include Symbols</label>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 
+
 <script>
-    function copyPassword() {
+   function copyPassword() {
         var passwordInput = document.getElementById("pass");
         passwordInput.select();
         document.execCommand("copy");
