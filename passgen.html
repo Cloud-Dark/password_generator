@@ -1,0 +1,104 @@
+<div class="page-body">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card card-border-inverse">
+                <div class="card-block" id="div_pass">
+                    <table class="table table-bordered">
+                        <tbody>
+                            <tr>
+                                <td>Password</td>
+                                <td>
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <input type="text" name="pass" id="pass" class="form-control" readonly>
+                                            <span class="input-group-btn">
+                                                <button id="copyButton" class="btn btn-default" onclick="copyPassword()">Copy</button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Option</td>
+                                <td>
+                                    <label for="slider">Length:</label>
+                                    <input id="slider" class="form-control" type="number" min="10" max="50" value="10">
+                                    <br>
+                                    <div class="setting">
+                                        <input type="checkbox" id="uppercase" checked>
+                                        <label for="uppercase">Include Uppercase</label>
+                                    </div>
+                                    <div class="setting">
+                                        <input type="checkbox" id="lowercase" checked>
+                                        <label for="lowercase">Include Lowercase</label>
+                                    </div>
+                                    <div class="setting">
+                                        <input type="checkbox" id="number" checked>
+                                        <label for="number">Include Numbers</label>
+                                    </div>
+                                    <div class="setting">
+                                        <input type="checkbox" id="symbol">
+                                        <label for="symbol">Include Symbols</label>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function copyPassword() {
+        var passwordInput = document.getElementById("pass");
+        passwordInput.select();
+        document.execCommand("copy");
+        alert("Copy Password Success");
+    }
+
+    function generatePassword() {
+        var slider = document.getElementById("slider");
+        var length = parseInt(slider.value);
+
+        // Cek jika length di bawah 10, munculkan alert & reset ke 10
+        if (length < 10) {
+            alert("Minimal panjang password adalah 10 karakter!");
+            slider.value = 10;
+            length = 10;
+        }
+
+        var includeUppercase = document.getElementById("uppercase").checked;
+        var includeLowercase = document.getElementById("lowercase").checked;
+        var includeNumbers = document.getElementById("number").checked;
+        var includeSymbols = document.getElementById("symbol").checked;
+        var passwordInput = document.getElementById("pass");
+
+        var charset = "";
+        if (includeUppercase) charset += "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        if (includeLowercase) charset += "abcdefghijklmnopqrstuvwxyz";
+        if (includeNumbers) charset += "0123456789";
+        if (includeSymbols) charset += "!@#$%^&*()_+~`|}{[]:;?><,./-=";
+
+        if (charset.length === 0) {
+            passwordInput.value = "Pilih setidaknya satu opsi";
+            return;
+        }
+
+        var password = "";
+        for (var i = 0; i < length; i++) {
+            password += charset.charAt(Math.floor(Math.random() * charset.length));
+        }
+
+        passwordInput.value = password;
+    }
+
+    document.getElementById("slider").addEventListener("input", generatePassword);
+    document.getElementById("uppercase").addEventListener("change", generatePassword);
+    document.getElementById("lowercase").addEventListener("change", generatePassword);
+    document.getElementById("number").addEventListener("change", generatePassword);
+    document.getElementById("symbol").addEventListener("change", generatePassword);
+
+    generatePassword();
+</script>
